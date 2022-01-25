@@ -6,14 +6,47 @@
     <title>Copy 2 Clipboard!</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css">
 </head>
-<body>
-    <h1>Copy 2 Clipboard!</h1>
-    <form>
-        <div class="form-group">
-            <label for="inputText"></label>
-            <input type="text" class="form-control" id="inputText" placeholder="Text to be clipped">
-        </div>
-        <button type="submit" class="btn btn-primary">Copy URL</button>
-    </form>
+<body class="text-center">
+    <div class="container d-flex h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div class="inner">
+                <h3 class="">DNX</h3>
+            </div>
+        </header>
+
+        <main role="main" class="inner">
+            <h1>Copy 2 Clipboard!</h1>
+            <div id="successMessage" class="alert alert-success visually-hidden">
+                <strong>Success!</strong> Link was copied to your clipboard.
+            </div>
+            <form action="javascript:submitForm()">
+                <div class="form-group">
+                    <label for="inputText"></label>
+                    <input type="text" class="form-control" id="inputText" placeholder="Text to be clipped">
+                </div>
+                <button type="submit" class="btn btn-primary" id="copyButton">Copy URL</button>
+            </form>
+        </main>
+
+        <footer class="mt-auto">
+            <div class="inner">
+                <p>A service by <a href="https://github.com/DNX-Development/">DNX-Development</a>.</p>
+            </div>
+        </footer>
+    </div>
+    <script>
+        function submitForm() {
+            let domain = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/copy?text='
+            let text = document.getElementById('inputText').value
+            navigator.clipboard.writeText(encodeURI(domain + text))
+            document.getElementById('successMessage').classList.remove('visually-hidden')
+            document.getElementById('inputText').value = ''
+        }
+    </script>
+    <style>
+        #copyButton {
+            margin: 1%;
+        }
+    </style>
 </body>
 </html>
