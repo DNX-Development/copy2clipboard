@@ -22,7 +22,5 @@ jobs:
       run: |
         npm install
         npm run build --if-present
-    - name: Test node project
-      run: node .
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag deeonix/copy2clipboard:latest
